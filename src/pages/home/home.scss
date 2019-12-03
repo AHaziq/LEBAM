@@ -1,3 +1,23 @@
 page-home {
+  canvas {
+    display: block;
+    border-top: 1px solid rgb(187, 178, 178);
+    border-bottom: 1px solid rgb(187, 178, 178);
+  }
 
+  .color-block {
+    height: 40px;
+  }
+
+  .tool {
+    background: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom: inset;
+  }
+
+  .canvass {
+    background: white;
+    margin-left: -2px;
+  }
 }

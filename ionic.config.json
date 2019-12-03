@@ -1,5 +1,7 @@
 {
   "name": "lebam",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

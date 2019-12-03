@@ -1,14 +1,60 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Lebam
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content style="background: whitesmoke">
+
+  <div>
+    <ion-row>
+      <ion-col *ngFor="let color of colors" [style.background]="color" class="color-block" tappable
+        (click)="selectColor(color)"></ion-col>
+    </ion-row>
+    <ion-row radio-group [(ngModel)]="selectedColor">
+      <ion-col *ngFor="let color of colors" text-center style="background: white">
+        <ion-radio mode="ios" [value]="color"></ion-radio>
+      </ion-col>
+    </ion-row>
+    <canvas #imageCanvas class="canvass"
+      (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
+    <ion-row class="tool">
+      <ion-col style="flex-grow: 0;">
+        <ion-buttons>
+          <button color="danger" ion-button icon-only (click)="clearCanvasImage()"><ion-icon name="trash"></ion-icon></button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col>
+        <ion-buttons style="float: right">
+          <button color="light" ion-button icon-only (click)="changeSize(5)"><ion-icon style="font-size: 1em; padding-right: 10px; padding-left: 10px;" name="md-radio-button-on"></ion-icon></button>
+          <button color="light" ion-button icon-only (click)="changeSize(10)"><ion-icon style="font-size: 1.5em; padding-right: 10px; padding-left: 10px;" name="md-radio-button-on"></ion-icon></button>
+          <button color="light" ion-button icon-only (click)="changeSize(15)"><ion-icon style="font-size: 2em; padding-right: 10px; padding-left: 10px;" name="md-radio-button-on"></ion-icon></button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-list>
+    <ion-list-header>Record</ion-list-header>
+    <ion-card *ngFor="let repot of report">
+      <ion-card-content>
+        <img src="https://anak2u.s3-ap-southeast-1.amazonaws.com/{{repot.report_picture}}">
+      </ion-card-content>
+      <ion-row>
+        <h4>{{repot?.message}}</h4>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-item style="margin-left: -8px;">
+      <ion-input [(ngModel)]="message" type="text" placeholder="Message" clearInput></ion-input>
+    </ion-item>
+    <button ion-button full color="" (click)="saveCanvasImage(message)"><b>UPLOAD IMAGE</b></button>
+  </ion-toolbar>
+</ion-footer>
